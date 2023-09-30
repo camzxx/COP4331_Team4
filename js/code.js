@@ -77,6 +77,7 @@ function doSignUp()
 	if(login == "" || password == "" || firstName == "" || lastName == "")
 	{
 		document.getElementById("signupResult").innerHTML ="Fill in all SignUp information";
+		document.getElementById("signupResult").style.display = "inline";
 		return;
 	}
 	
@@ -109,10 +110,12 @@ function doSignUp()
 				if( userId > 1 )// changed to greater than 1
 				{		
 					document.getElementById("signupResult").innerHTML = "Username already taken";
+					document.getElementById("signupResult").style.display = "inline";
 					//return;
 				}
 				else{
 					document.getElementById("signupResult").innerHTML = "Succesfully created account";
+					document.getElementById("signupResult").style.display = "inline";
 					window.location.href = "/index.html"; //commented for testing
 				}
 		
@@ -144,8 +147,8 @@ function deleteUser()
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
-	//xhr.open("POST", url, true);
-	xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
+	xhr.open("POST", url, true);
+	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try
