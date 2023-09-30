@@ -369,5 +369,7 @@ function searchColor()
 
 function deleteColor()
 {
+
+	
 	
 }
