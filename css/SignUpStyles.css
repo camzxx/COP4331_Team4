@@ -1,8 +1,8 @@
 body 
 {
-    position: fixed;
     background: black center/cover url("../images/SignUpBackground.jpg") no-repeat;
     height: 100vh;
+    background-attachment: fixed;
 }
 
 .SignUpBox
@@ -32,17 +32,16 @@ body
     filter: drop-shadow(5px 5px 5px #555);
 }
 
-.popup{
-    background-color: blue;
+#signupResult{
+    display: none;
+    background-color: #1c4a90;
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    top: 25px;
+    left: 20px;
     padding: 10px;
+    border:1px solid transparent;
+    border-radius:4px
 }
-
-#signupResult{
-    background-color: transparent;
-}
-
-
-
 
