@@ -149,8 +149,8 @@ function deleteUser()
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
-	//xhr.open("POST", url, true);
-	xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
+	xhr.open("POST", url, true);
+	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try
