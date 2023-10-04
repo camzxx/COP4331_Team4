@@ -77,7 +77,7 @@ function doSignUp()
 	if(login == "" || password == "" || firstName == "" || lastName == "")
 	{
 		document.getElementById("signupResult").innerHTML ="Fill in all SignUp information";
-		document.getElementById("signupResult").style.display = "inline";
+		document.getElementById("signupResult").style.display = "block";
 
 		return;
 	}
@@ -111,12 +111,12 @@ function doSignUp()
 				if( userId > 1 )// changed to greater than 1
 				{		
 					document.getElementById("signupResult").innerHTML = "Username already taken";
-					document.getElementById("signupResult").style.display = "inline";
+					document.getElementById("signupResult").style.display = "block";
 					//return;
 				}
 				else{
 					document.getElementById("signupResult").innerHTML = "Succesfully created account";
-					document.getElementById("signupResult").style.display = "inline";
+					document.getElementById("signupResult").style.display = "block";
 
 					window.location.href = "/index.html"; //commented for testing
 				}

@@ -1,7 +1,28 @@
-body 
-{
+
+
+body.index{
     background: black center/cover url("../images/BeachBackground.jpg") no-repeat;
+}
+
+body.signup{
+    background: black center/cover url("../images/SignUpBackground.jpg") no-repeat;
+}
+
+body.contacts{
+    background: black center/cover url("../images/ColorHomePageBackground.jpg") no-repeat;
+}
+
+body.index, body.signup, body.contacts
+{
     height: 100vh;
+	background-attachment: fixed;
+}
+.LoginBox, .SignUpBox, .controlBox{
+   background-color:black;
+   box-shadow: 5px 10px 20px rgba(0,0,0,0.6);
+   border-radius: 20px;  
+   color:white;
+   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .LoginBox
@@ -9,11 +30,20 @@ body
     width: 350px;
     height:400px;
     margin:auto;
-  
-   background-color:black;
-   box-shadow: 5px 10px 20px rgba(0,0,0,0.6);
-   border-radius: 20px;  
-   color:white;
+}
+
+.SignUpBox
+{
+    width: 450px;
+    height:450px;
+    margin:auto;
+}
+
+.controlBox
+{
+    width: 700px;
+    min-height:65vh;
+    margin:auto;
 }
 
 #title{
@@ -21,15 +51,15 @@ body
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#loginButton{
+#loginButton, #createAccount{
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: white;
 }
-#loginButton:hover{
+#loginButton:hover, #createAccount:hover{
     color: white;
 }
 
-#loginButton:visited{
+#loginButton:visited, #createAccount:visited{
     color: none;
 }
 
@@ -41,4 +71,46 @@ body
     filter: drop-shadow(5px 5px 5px #555);
 }
 
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="controlBox"] {
+    width: 100%;
+    }
+    [class*="LoginBox"] {
+        width: 100%;
+    }
+    [class*="SignUpBox"] {
+        width: 100%;
+    }
+    form {
+        width:90%
+    }
+}
 
+#signupResult{
+    display: none;
+    background-color: #1c4a90;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    top: 25px;
+    left: 20px;
+    padding: 10px;
+    border:1px solid transparent;
+    border-radius:4px
+}
+
+
+#flexbox{
+    display: flex;
+}
+
+#newInfo{
+    display: none;
+    width: 300px
+}
+
+#addButton, #updateButton{
+    display: none;
+    flex: 1;
+}
