@@ -139,16 +139,17 @@ function doSignUp()
 	}
 }
 //NEW: Delete User function (needS testing)
-function deleteUser()
+function deleteContact()
 {
-	let login = document.getElementById("deleteUsername").value;
-	let userId = document.getElementById("deleteId").value;
+	let name = document.getElementById("contactName").value;
+	//let userId = document.getElementById("deleteId").value;
 	
-	let tmp ={login:login, userId:userId};
+	let tmp ={name:name, userId:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
+	let url = urlBase + '/DeleteContact.' + extension;
 	xhr.open("POST", url, true);
 	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -187,48 +188,49 @@ function deleteUser()
 //Not finished
 function addContact()
 {
-	let login = document.getElementById("deleteUsername").value;
-	let userId = document.getElementById("deleteId").value;
+	let name = document.getElementById("contactName").value;
+	let info1 = document.getElementById("info1").value;
+	let info2 = document.getElementById("info2").value;
 	
-	let tmp ={login:login, userId:userId};
+	let tmp ={name:name, info1:info1, info2:info2, userId:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
-	//xhr.open("POST", url, true);
-	xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
+	xhr.open("POST", url, true);
+	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 }
 //Not finished
 function updateContact()
 {
-	let login = document.getElementById("deleteUsername").value;
-	let userId = document.getElementById("deleteId").value;
+	let name = document.getElementById("contactName").value;
+	let info1 = document.getElementById("info1").value;
+	let info2 = document.getElementById("info2").value;
 	
-	let tmp ={login:login, userId:userId};
+	let tmp ={name:name, info1:info1, info2:info2, userId:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
-	//xhr.open("POST", url, true);
-	xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
+	xhr.open("POST", url, true);
+	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 }
 //Not finished
 function searchContact()
 {
-	let login = document.getElementById("deleteUsername").value;
-	let userId = document.getElementById("deleteId").value;
+	let name = document.getElementById("contactName").value;
 	
-	let tmp ={login:login, userId:userId};
+	let tmp ={name:name, userId:userId};
 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
-	//xhr.open("POST", url, true);
-	xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
+	xhr.open("POST", url, true);
+	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 }
 
@@ -267,10 +269,10 @@ function readCookie()
 	{
 		window.location.href = "index.html";
 	}
-	else
-	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+	// else
+	// {
+	// 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	// }
 }
 
 function doLogout()
