@@ -34,21 +34,37 @@
 				<button type="button" id="searchColorButton" class="btn btn-primary btn-sm" onclick="searchContact();"> Search </button>
 				<span id="SearchResult"></span>
 				<p id="contactList"></p>
-				<!-- </p><br />
-				Color to Add:
-				<input class="form-control" type="text" id="colorText" placeholder="Color">
-				<button type="button" id="addColorButton" class="btn btn-primary btn-sm" onclick="addColor();"> Add Color </button><br />
-				<span id="colorAddResult"></span> -->
+				<br />
 			</div>
 			<br />
 			<!-- add / delete / update / display -->
 			<!-- need to add onclick()s and requirements-->
 			<div id="navigationMenu">
 				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-primary" id="addItemButton" onclick="window.location.href='/addcontact.html';">Add</button>
-					<button type="button" class="btn btn-primary" id="deleteItemButton">Delete</button>
-					<button type="submit" formaction="updatepage.html" class="btn btn-primary" id="updateItemButton">Update</button>
-					<button type="button" class="btn btn-primary" id="displayItemButton">Display</button>
+					<!--<button type="button" class="btn btn-primary" id="addItemButton" onclick="window.location.href='/addContact.html';">Add</button>-->
+					<button type="button" class="btn btn-primary" id="addItemButton" onclick="document.getElementById('newInfo').style.display = 'inline-block'; document.getElementById('addButton').style.display = 'inline'; document.getElementById('updateButton').style.display = 'none';">New</button>
+					<button type="button" class="btn btn-primary" id="deleteItemButton" onclick="deleteContact();">Delete</button>
+					<!--<button type="button" class="btn btn-primary" id="updateItemButton" onclick="updateContact();">Update</button> -->
+					<button type="button" class="btn btn-primary" id="updateItemButton" onclick="document.getElementById('newInfo').style.display = 'inline-block'; document.getElementById('updateButton').style.display = 'inline'; document.getElementById('addButton').style.display = 'none';">Update</button>
+
+				</div>
+			</div>
+			<div id="flexbox">
+				<div  id="newInfo">
+					<input class="contactName" type="text" id="contactName" placeholder="name">
+					<label for="contactName">Name </label>
+					<input class="contactInfo" type="text" id="contactInfo1" placeholder="info">
+					<label for="contactInfo1">Contact</label>
+					<input class="contactInfo" type="text" id="contactInfo2" placeholder="info">
+					<label for="contactInfo2">Contact</label>
+				</div>
+				<div id="addButton">
+					<br />
+					<button type="button" class="btn btn-primary" id="addContactButton" onClick="addContact();">Add</button>
+				</div>
+				<div id="updateButton">
+					<br />
+					<button type="button" class="btn btn-primary" id="updateContactButton" onClick="updateContact();">Update</button>
 				</div>
 			</div>
 			<br />
@@ -93,9 +109,9 @@
 <body>
     
     <div class="functionControl" id="functionBox">
-        <form style="margin:auto; max-width:300px;">
+        <form style="margin:auto; max-width:300px;"> -->
             <!-- Navigation Menu -->
-            <div id="navigationMenu">
+           <!-- <div id="navigationMenu">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary" id="addItemButton">Add</button>
                     <button type="button" class="btn btn-primary" id="deleteItemButton">Delete</button>

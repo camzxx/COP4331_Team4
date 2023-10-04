@@ -2,6 +2,7 @@ body
 {
     background: black center/cover url("../images/ColorHomePageBackground.jpg") no-repeat;
     height: 100vh;
+    background-attachment: fixed;
 }
 
 .controlBox
@@ -18,6 +19,20 @@ body
     
 }
 
+
+#flexbox{
+    display: flex;
+}
+
+#newInfo{
+    display: none;
+    width: 300px
+}
+
+#addButton, #updateButton{
+    display: none;
+    flex: 1;
+}
 
 
 
