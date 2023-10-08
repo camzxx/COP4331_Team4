@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contacts</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="css/wetrystyle.css" rel="stylesheet">
+    <script type="text/javascript" src="js/code.js"></script>
+</head>
+<body onLoad="displayContacts();">
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            readCookie();
+        }, false);
+    </script>
+
+	<div class ="text-center">
+		<img class = "mt-4" src ="images/BeachLogo.png" height = "200" alt ="Pretty Beach Logo">
+	</div>
+
+    <div id="controlBox" class="controlBox">
+        <form>
+            <input type="search" name="contact" id="contactSearchBar" placeholder="Search..." onkeyup="searchContact();">
+        </form>
+        
+        <button type="submit" id="addButton" class="btn btn-primary" onclick="window.location.href='addContact.html';"> Add contact </button>
+
+        <div class="controlTable" >
+            <table class="no-border-table" >
+                <!-- <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead> -->
+                <!-- <tbody> -->
+                    <!-- <tr class="contact">
+                        <td> Camila Florez</td>
+                        <td> (305)264-9636</td>
+                        <td><a type="email">bloop@ucf.edu</a></td>
+                        <td> 12/25/2023</td>
+                        <td><button class="icon" onclick="editContact()" id="edit-button"><img src="images/editing.png" class="img-resize"/></button>
+                        <button class="icon" onclick="deleteContact()" id="delete-button"><img src="images/delete.png" class="img-resize"/></button></td>
+                    </tr>
+                    <tr class="contact">
+                        <td> Camila Florez</td>
+                        <td> (305)264-9636</td>
+                        <td><a type="email">bloop@ucf.edu</a></td>
+                        <td> 12/25/2023</td> 
+                        <td><button class="icon" onclick="editContact()" id="edit-button"><img src="images/editing.png" class="img-resize"/></button>
+                        <button class="icon" onclick="deleteContact()" id="delete-button"><img src="images/delete.png" class="img-resize"/></button></td>
+                    </tr>
+                    <tr class="contact">
+                        <td> Camila Florez</td>
+                        <td> (305)264-9636</td>
+                        <td><a type="email">bloop@ucf.edu</a></td>
+                        <td> 12/25/2023</td>
+                        <td><button class="icon" onclick="editContact()" id="edit-button"><img src="images/editing.png" class="img-resize"/></button>
+                        <button class="icon" onclick="deleteContact()" id="delete-button"><img src="images/delete.png" class="img-resize"/></button></td>
+                    </tr> -->
+                    
+                <!-- </tbody> -->
+            </table> 
+            <span id="SearchResult"></span>
+            <span id="CRUDresult"></span>
+			<p id="contactList"></p>
+            <div style="margin-top: 50px;"><!--150px-->
+                <span id="userName"></span><br />
+                <button type="button" id="LogOutButton" class="btn btn-primary" style="margin-right: auto; display: block; "onclick="doLogout();"> Log Out </button>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
