@@ -35,7 +35,7 @@ body.index, body.signup, body.contacts
 .SignUpBox
 {
     width: 450px;
-    height:450px;
+    height:455px;
     margin:auto;
 }
 
@@ -44,6 +44,7 @@ body.index, body.signup, body.contacts
     width: 700px;
     min-height:65vh;
     margin:auto;
+
 }
 
 #title{
@@ -74,12 +75,12 @@ body.index, body.signup, body.contacts
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="controlBox"] {
-    width: 100%;
-    }
-    [class*="LoginBox"] {
         width: 100%;
     }
-    [class*="SignUpBox"] {
+    [class*="indexBox"] {
+        width: 100%;
+    }
+    [class*="signUpBox"] {
         width: 100%;
     }
     form {
@@ -93,8 +94,6 @@ body.index, body.signup, body.contacts
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
     position: relative;
-    top: 25px;
-    left: 20px;
     padding: 10px;
     border:1px solid transparent;
     border-radius:4px
@@ -114,3 +113,41 @@ body.index, body.signup, body.contacts
     display: none;
     flex: 1;
 }
+
+
+#icon{
+    right:15px;
+    bottom: 18px;
+    border-radius: 20px;
+    position:fixed;
+    display:block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    background-color:#4582a4
+}
+
+#icon:hover   { animation-name: icon;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;}
+    @keyframes icon{
+        0%{}
+        10%{transform:rotate(20deg)}
+        80%{transform:rotate(-20deg)}
+        100%{}
+    }
+
+
+.darkmodeBox{ 
+    background-color:black;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.6); 
+    color:white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+    
+.darkmodeResult{ 
+    background-color: #1c4a90;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+     

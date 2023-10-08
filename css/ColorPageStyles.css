@@ -1,14 +1,14 @@
 body 
 {
-    background: black center/cover url("../images/ColorHomePageBackground.jpg") no-repeat;
+    background: rgb(0, 0, 0) center/cover url("../images/ColorHomePageBackground.jpg") no-repeat;
     height: 100vh;
     background-attachment: fixed;
 }
 
 .controlBox
 {
-    width: 450px;
-    height:450px;
+    width: 700px;
+    min-height:65vh;
     margin:auto;
     font-family: Georgia, 'Times New Roman', Times, serif;
   
@@ -18,7 +18,6 @@ body
    color:white;
     
 }
-
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="controlBox"] {
@@ -28,7 +27,6 @@ body
         width:90%
     }
   }
-
 
 #flexbox{
     display: flex;
@@ -43,7 +41,6 @@ body
     display: none;
     flex: 1;
 }
-
 
 
 

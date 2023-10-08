@@ -2,7 +2,7 @@ body
 {
     background: black center/cover url("../images/SignUpBackground.jpg") no-repeat;
     height: 100vh;
-    background-attachment: fixed;
+	background-attachment: fixed;
 }
 
 .SignUpBox
@@ -44,4 +44,3 @@ body
     border:1px solid transparent;
     border-radius:4px
 }
-
