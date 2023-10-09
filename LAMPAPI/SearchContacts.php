@@ -1,8 +1,8 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
+	header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
@@ -18,8 +18,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 		$stmt = $conn->prepare("SELECT * from Contacts WHERE Name like ? AND UserID =?");
         $searchName = $inData["search"] . "%";
         $stmt->bind_param("ss", $searchName, $inData["userId"]);
-		
-		//$stmt->bind_param("ss", $colorName, $inData["userId"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -32,12 +30,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 			}
 			$searchCount++;
 			$searchResults .=json_encode($row);
-			//$searchResults .= '"' . $row["Name"] . '"';
 		}
 		
 		if( $searchCount == 0 )
 		{
-            //returnWithInfo(true);
 			returnWithError( "No Records Found" );
 		}
 		else

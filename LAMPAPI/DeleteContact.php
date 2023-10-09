@@ -60,7 +60,6 @@
 
    function returnWithError( $err )
 	{
-		//$retValue = '{"username":"","firstName":"","lastName":"","password":"","error":"' . $err . '"}';
 		$retValue = '{"error":"' . $err . '"}';
         sendResultInfoAsJson( $retValue );
 	}

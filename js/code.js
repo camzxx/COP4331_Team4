@@ -16,13 +16,12 @@ function doLogin()
 	let login = document.getElementById("emailAddress").value;
 	let password = document.getElementById("loginPassword").value;
 
-	// remember = document.getElementById("checkbox");
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	let tmp = {login:login,password:hash};
+
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
@@ -30,7 +29,6 @@ function doLogin()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	// xhr.send(jsonPayload);
 	
 	try
 	{
@@ -65,23 +63,19 @@ function doLogin()
 
 }
 
-function toEdit(userId, contactId, contactName, contactPhone, contactEmail){
-	//alert("userId = "+userId+"contactId = "+contactId+"name = " + contactName);
+function toEdit(userId, contactId, contactName, contactPhone, contactEmail)
+{
 	localStorage.setItem("userId", userId);
 	localStorage.setItem("contactId", contactId);
 	localStorage.setItem("nameValue", contactName);
 	localStorage.setItem("phoneValue", contactPhone);
 	localStorage.setItem("emailValue", contactEmail);
-
-	// editContactID = parseInt(contactId);
-	// contactName = contactName;
 	window.location.href ="editContact.html";
 }
 
 function loadEdit(){
 	let userId = localStorage.getItem("userId");
 	let contactId = localStorage.getItem("contactId");
-	// alert(userId+", " + contactId);
 	
 	document.getElementById("Name").placeholder=localStorage.getItem("nameValue");
 	document.getElementById("phone").placeholder=localStorage.getItem("phoneValue");
@@ -112,22 +106,16 @@ function doSignUp()
 		document.getElementById("signupResult").style.display = "block";
 		return;
 	}
-	
-	// remember = document.getElementById("checkbox").
-//	var hash = md5( password );
-	
-	//document.getElementById("loginResult").innerHTML = "";
 
-	//let tmp = {login:login,password:password};
-	let tmp = {login:login, password:password, firstName:firstName, lastName:lastName};//new edit
-//	var tmp = {login:login,password:hash, firstName:firstName, lastName:lastName};
+	var hash = md5( password );
+	
+	let tmp = {login:login, password:hash, firstName:firstName, lastName:lastName};
 	let jsonPayload = JSON.stringify( tmp );
 	
-	let url = urlBase + '/SignUp.' + extension; //edited
+	let url = urlBase + '/SignUp.' + extension; 
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/SignUp.php", true); //url = "http://142.93.186.91/LAMPAPI/SignUp.php"
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	
 	try
@@ -139,25 +127,20 @@ function doSignUp()
 				let jsonObject = JSON.parse(xhr.responseText);
 				userId = jsonObject.id;
 		
-				if( userId > 1 )// changed to greater than 1
+				if( userId > 1 )
 				{		
 					document.getElementById("signupResult").innerHTML = "Username already taken";
 					document.getElementById("signupResult").style.display = "block";
-					//return;
+					
 				}
 				else{
 					document.getElementById("signupResult").innerHTML = "Succesfully created account";
 					document.getElementById("signupResult").style.display = "block";
-					window.location.href = "/index.html"; //commented for testing
+					window.location.href = "/index.html"; 
 				}
-		
-				//commented code is remains from doLogin()
+
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
-				// login = jsonObject.login;
-				// password = jsonObject.password;
-
-				// saveCookie();
 
 			}
 		};
@@ -169,20 +152,15 @@ function doSignUp()
 	}
 }
 
-
-//NEW: Delete Canotact function 
 function deleteContact(contactId)
 {	
 	let tmp ={contact:contactId, userId:userId};
-
-	//console.log(userId);
 
 	let jsonPayload = JSON.stringify( tmp );
 
 	let xhr = new XMLHttpRequest();
 	let url = urlBase + '/DeleteContact.' + extension;
 	xhr.open("POST", url, true);
-	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try
@@ -193,13 +171,11 @@ function deleteContact(contactId)
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				let boolean = jsonObject.result;
-				//userId = jsonObject.id;
-				console.log(boolean);
+
 				if( boolean == "true")
 				{		
 					document.getElementById("CRUDresult").innerHTML = "User was successfully Deleted!";
 					window.location.href = "contacts.html";
-					//window.location.reload();
 				}
 
 				else
@@ -217,16 +193,13 @@ function deleteContact(contactId)
 	}
 }
 
-//Not finished
 function addContact()
 {	
-	//document.getElementById("signupResult").innerHTML = "userId = " + userId;
 	let name = document.getElementById("NewName").value;
 	let number = document.getElementById("NewPhone").value;
 	let email = document.getElementById("NewEmail").value;
 	var userId = localStorage.getItem("clientId");
 	let tmp ={name:name, number:number, email:email, userId:userId};
-	//console.log(userId);
 	
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -234,8 +207,6 @@ function addContact()
 	let url = urlBase + '/AddContact.' + extension;
 	
 	xhr.open("POST", url, true);
-	
-	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/AddContact.php", true);
 	
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
@@ -257,12 +228,9 @@ function addContact()
 	window.location.href = "contacts.html";
 
 }
-//Not finished
+
 function updateContact(userId, contactId)
 {
-	// let name = document.getElementById("contactName").value;
-	// let info1 = document.getElementById("info1").value;
-	// let info2 = document.getElementById("info2").value;
 	let name = document.getElementById("Name").value;
 	let number = document.getElementById("phone").value;
 	let email = document.getElementById("email").value;
@@ -274,7 +242,6 @@ function updateContact(userId, contactId)
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	
 	try{
@@ -314,21 +281,17 @@ function displayContacts()
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
-			{
-						
-						
+			{		
 				myObj = JSON.parse( xhr.responseText );
 
-				//text+="<td padding ='5px'>"
-					let text = "<table class = 'no-border-table'>"
-					text+= "<thead>"
-					text += "<tr><th style='text-align: center'>Name</th>"
-					text += "<th style='text-align: center'>Phone</th>"
-					text += "<th style='text-align: center'>Email</th>"
-					text += "<th style='text-align: center'>Date Added</th></tr>"
-					text +="</thead>"
+				let text = "<table class = 'no-border-table'>"
+				text+= "<thead>"
+				text += "<tr><th style='text-align: center'>Name</th>"
+				text += "<th style='text-align: center'>Phone</th>"
+				text += "<th style='text-align: center'>Email</th>"
+				text += "<th style='text-align: center'>Date Added</th></tr>"
+				text +="</thead>"
 
-				//for (let x in myObj.results.length)
 				if(myObj.error == "No Records Found")
 				{
 					document.getElementById("contactList").innerHTML= text;
@@ -346,21 +309,17 @@ function displayContacts()
 						contactEmail = myObj.results[x].Email;
 
 						text += "<tr class='contact'><td style='text-align: center'>"+ myObj.results[x].Name +"</td>"
-						//text += "<tr><td>" + myObj.results[x].Name + "</td>"
 						text += "<td style='text-align: center'>" + myObj.results[x].Phone + "</td>"
 						text += "<td style='text-align: center'>" + myObj.results[x].Email + "</td>"
 						text += "<td style='text-align: center'>" + myObj.results[x].DateCreated + "</td>"
-						// text += " <td><button class='icon' onclick='toEdit("+ userValue +","+ idvalue +",\""+ contactName +"\",\""+contactPhone+"\",\""+contactEmail+"\");' id='edit-button'><img src='images/editing.png' class='img-resize'/></button>"
 						text += " <td><button class='icon' onclick='toEdit("+userValue+", "+idvalue+", \""+contactName+"\",\""+contactPhone+"\",\""+contactEmail+"\");' id='edit-button'><img src='images/editing.png' class='img-resize'/></button>"
 						text += "<button class='icon' onclick='deleteContact("+ idvalue +");' id='delete-button' style='padding-left: 25px;'><img src='images/delete.png' class='img-resize'/></button></td></tr>"
-					
 					}
-					text += "</table>"
 
+					text += "</table>"
 					document.getElementById("contactList").innerHTML= text;
 				}
 					
-
 			}
 		};
 		xhr.send(jsonPayload);
@@ -369,20 +328,13 @@ function displayContacts()
 	{
 		document.getElementById("SearchResult").innerHTML = err.message;
 	}
-
-
 	
 }
-//Finished
+
 function searchContact()
 {
 	let search = document.getElementById("contactSearchBar").value;
-
-	//let userId = document.getElementById("deleteId").value;
-	
-	//let contactList =" ";
 	let tmp ={search:search,userId:userId};
-	//console.log(userId);
 
 	let jsonPayload = JSON.stringify( tmp );
 
@@ -392,9 +344,7 @@ function searchContact()
 	let url = urlBase + '/SearchContact.' + extension;
 
 	xhr.open("POST", url, true);
-	//xhr.open("POST", "http://142.93.186.91/LAMPAPI/DeleteUser.php", true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	//xhr.send(jsonPayload);
 
 	let text = "<table class = 'no-border-table'>"
 			text+= "<thead>"
@@ -410,61 +360,44 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				
-				
-		myObj = JSON.parse( xhr.responseText );
+				myObj = JSON.parse( xhr.responseText );
 
+				if(myObj.error =="No Records Found")
+				{
+					document.getElementById("SearchResult").innerHTML = "No Contacts Found";
+					document.getElementById("contactList").innerHTML= text;
+				}
 
-		if(myObj.error =="No Records Found")
-		{
-			document.getElementById("SearchResult").innerHTML = "No Contacts Found";
-			document.getElementById("contactList").innerHTML= text;
-		}
-		else
-		{
+				else
+				{
 
-		// Need to finish this part
-		
-		/*if(search == "")
-		{
-			document.getElementById("SearchResult").innerHTML = "";
-			document.getElementById("contactList").innerHTML= "";
-		}*/
-		//else
-		//{
+					for(x=0; x< myObj.results.length;x++)
+					{
+						searchIdvalue= myObj.results[x].ID.toString();
+						userValue = myObj.results[x].UserID.toString();
+						let contactName = myObj.results[x].Name;
+						let contactPhone = myObj.results[x].Phone;
+						let contactEmail = myObj.results[x].Email;
 
-		//text+="<td padding ='5px'>"
-			
-		//for (let x in myObj.results.length)
-			for(x=0; x< myObj.results.length;x++)
-			{
-				searchIdvalue= myObj.results[x].ID.toString();
-				userValue = myObj.results[x].UserID.toString();
-				let contactName = myObj.results[x].Name;
-				let contactPhone = myObj.results[x].Phone;
-				let contactEmail = myObj.results[x].Email;
-				text += "<tr class='contact'><td style='text-align: center'>"+ myObj.results[x].Name +"</td>"
-	 			//text += "<tr><td>" + myObj.results[x].Name + "</td>"
-			 	text += "<td style='text-align: center'>" + myObj.results[x].Phone + "</td>"
-			 	text += "<td style='text-align: center'>" + myObj.results[x].Email + "</td>"
-			 	text += "<td style='text-align: center'>" + myObj.results[x].DateCreated + "</td>"
-			 	text += " <td><button class='icon' onclick='toEdit("+userValue+","+ searchIdvalue +",\""+contactName+"\",\""+contactPhone+"\",\""+contactEmail+"\");' id='edit-button'><img src='images/editing.png' class='img-resize'/></button>"
-			 	text += "<button class='icon' onclick='deleteContact("+searchIdvalue+");' id='delete-button' style ='padding-left: 25px;'><img src='images/delete.png' class='img-resize'/></button></td></tr>"
+						text += "<tr class='contact'><td style='text-align: center'>"+ myObj.results[x].Name +"</td>"
+			 			text += "<td style='text-align: center'>" + myObj.results[x].Phone + "</td>"
+			 			text += "<td style='text-align: center'>" + myObj.results[x].Email + "</td>"
+			 			text += "<td style='text-align: center'>" + myObj.results[x].DateCreated + "</td>"
+			 			text += " <td><button class='icon' onclick='toEdit("+userValue+","+ searchIdvalue +",\""+contactName+"\",\""+contactPhone+"\",\""+contactEmail+"\");' id='edit-button'><img src='images/editing.png' class='img-resize'/></button>"
+			 			text += "<button class='icon' onclick='deleteContact("+searchIdvalue+");' id='delete-button' style ='padding-left: 25px;'><img src='images/delete.png' class='img-resize'/></button></td></tr>"
 			 
-	 		}
-	 		text += "</table>"
-			if(text != "undefined")
-			{
-			document.getElementById("SearchResult").innerHTML = "Contacts has been retrieved";
-			document.getElementById("contactList").innerHTML= text;
-			}
+	 				}
 
-			}
-		//}
+	 				text += "</table>"
+
+					if(text != "undefined")
+					{
+						document.getElementById("SearchResult").innerHTML = "Contacts has been retrieved";
+						document.getElementById("contactList").innerHTML= text;
+					}
+
+				}
 	 	
-	
-
-
 			}
 		};
 		xhr.send(jsonPayload);
@@ -510,10 +443,10 @@ function readCookie()
 	{
 		window.location.href = "index.html";
 	}
-	// else
-	// {
-	// 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	// }
+	else
+	{
+		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	}
 }
 
 function doLogout()
@@ -523,96 +456,4 @@ function doLogout()
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "/index.html";
-}
-
-function addColor()
-{
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
-
-	let tmp = {color:newColor,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
-	// let xhr = new XMLHttpRequest();
-	let url = urlBase + '/AddColor.' + extension;
-	
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	// xhr.send(jsonPayload);
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
-	}
-	
-}
-
-function searchColor()
-{
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	let colorList = "";
-
-	let tmp = {search:search,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/SearchColors.' + extension;
-	// xhr.onload = function() {
-	// 	myObj = JSON.parse( xhr.responseText );
-	// 	let text = "<table boarder = '1'>"
-	// 	for (let x in myObj)
-	// 	{
-	// 		text += "<tr><tr>" + myObj[x].name + "</td></tr>"
-	// 	}
-	// 	text += "</table>"
-	// 	document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-	// }
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-	// part of the new code
-	// xhr.send(jsonPayload);
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-				let jsonObject = JSON.parse( xhr.responseText );
-
-				// let text += "<table boarder = '1'>"
-				
-				for( let x=0; x<jsonObject.results.length; x++ )
-				{
-					text= jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
-	}
-	
 }

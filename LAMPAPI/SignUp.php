@@ -10,10 +10,10 @@
    $inData = getRequestInfo();
    
    $id = 1;
-   $login = $inData["login"];//new
-   $firstName = $inData["firstName"];//new
-   $lastName = $inData["lastName"];//new
-   $password = $inData["password"];//new
+   $login = $inData["login"];
+   $firstName = $inData["firstName"];
+   $lastName = $inData["lastName"];
+   $password = $inData["password"];
 
    //connecting to the database
    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
@@ -23,10 +23,7 @@
    }
    else
    {
-       // connected - finding if data is in DB
-
-        // Edited from "Login.php"
-       $stmt = $conn->prepare("SELECT ID, Login FROM Users WHERE Login=?");//
+       $stmt = $conn->prepare("SELECT ID, Login FROM Users WHERE Login=?");
        $stmt->bind_param("s", $inData["login"]);
        $stmt->execute();
        $result = $stmt->get_result();
@@ -34,31 +31,21 @@
        if( $row = $result->fetch_assoc() )
        {
             returnWithInfo( $inData['firstName'], $inData['lastName'], $row['ID'] ); 
-            //returnWithError("Username Unavailable.");
        }
 
        else
        {
             $stmt->close();
-            
-            //$conn = "INSERT INTO `Users` ( `username`, `password`, `date`) VALUES ('$username', '$hash', current_timestamp())";
-            //Edited from AddColor.php
             $stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
             $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);// new edit
             $stmt->execute();
             $result = $stmt->get_result();
-
             returnWithInfo( $inData['firstName'], $inData['lastName'], $id);
-           
-            
-            //returnWithError("");
-            //Only one stmt-close was needed, was causing a 500 error
        }
        
        $stmt->close();
        $conn->close(); 
    }
-
 
    function getRequestInfo()
    {
@@ -73,7 +60,6 @@
 
    function returnWithError( $err )
 	{
-		//$retValue = '{"username":"","firstName":"","lastName":"","password":"","error":"' . $err . '"}';
 		$retValue = '{"error":"' . $err . '"}';
         sendResultInfoAsJson( $retValue );
 	}
@@ -82,7 +68,6 @@
     function returnWithInfo( $firstName, $lastName, $id )
 	{
         $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		//$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","login":"' . $login . '","password":"' . $password . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
